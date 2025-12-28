@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assessment{% endblock %}
+
+{% block body %}
+    <h1>Assessment</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ assessment.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ assessment.title }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ assessment.date ? assessment.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Coefficient</th>
+                <td>{{ assessment.coefficient }}</td>
+            </tr>
+            <tr>
+                <th>Semester</th>
+                <td>{{ assessment.semester }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_assessment_index') }}">back to list</a>
+
+    <a href="{{ path('app_assessment_edit', {'id': assessment.id}) }}">edit</a>
+
+    {{ include('assessment/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Assessment index{% endblock %}
+
+{% block body %}
+    <h1>Assessment index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Coefficient</th>
+                <th>Semester</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for assessment in assessments %}
+            <tr>
+                <td>{{ assessment.id }}</td>
+                <td>{{ assessment.title }}</td>
+                <td>{{ assessment.date ? assessment.date|date('Y-m-d') : '' }}</td>
+                <td>{{ assessment.coefficient }}</td>
+                <td>{{ assessment.semester }}</td>
+                <td>
+                    <a href="{{ path('app_assessment_show', {'id': assessment.id}) }}">show</a>
+                    <a href="{{ path('app_assessment_edit', {'id': assessment.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_assessment_new') }}">Create new</a>
+{% endblock %}
